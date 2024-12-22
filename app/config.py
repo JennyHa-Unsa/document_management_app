@@ -1,6 +1,8 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY") or "clave_secreta_defecto"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///app.db"
+    # Configuración para SQLite (puedes cambiar la ruta a donde prefieras almacenar el archivo .db)
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = "random string"  # Para sesiones y autenticación
+    # SECRET_KEY = os.urandom(24)  # Para sesiones y autenticación

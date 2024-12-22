@@ -1,5 +1,5 @@
 # Archivos y carpetas de Flask 
-instance/ 
+#instance/ 
 flask_session/
 # Entorno virtual
 venv/
