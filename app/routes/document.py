@@ -1,4 +1,6 @@
 from flask import Blueprint
+from app.auth.rbac import verificar_permiso, verificar_jerarquia
+
 
 bp = Blueprint("document", __name__)
 
