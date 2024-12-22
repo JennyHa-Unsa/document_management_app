@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Mis Documentos</h1>
+<a href="{{ url_for('document.upload_document') }}" class="btn btn-primary">Subir Documento</a>
+<ul>
+    {% for doc in documents %}
+    <li>
+        {{ doc.nombre_documento }}
+        <a href="{{ url_for('document.download_document', document_id=doc.id_documento) }}">Descargar</a>
+        <form action="{{ url_for('document.delete_document', document_id=doc.id_documento) }}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
