@@ -1,9 +1,12 @@
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for, flash, session
 from flask_login import login_required, current_user
-from app.auth.rbac import verificar_permiso, verificar_jerarquia
-from app.document_management.file_operations import list_files, read_file, write_file, delete_file
-from app.document_management.encryption import encrypt_file, decrypt_file, generate_symmetric_key
-from app.models import db, Documento, Usuario
+from app.services.rbac import verificar_permiso, verificar_jerarquia
+from app.services.file_operations import list_files, read_file, write_file, delete_file
+from app.services.encryption import encrypt_file, decrypt_file, generate_symmetric_key
+from app.models.doumento import Documento, db
+from app.models.usuario import Usuario
+
+
 import os
 
 bp = Blueprint("document", __name__, url_prefix="/documents")

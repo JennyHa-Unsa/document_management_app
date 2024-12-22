@@ -1,5 +1,6 @@
 # Este archivo validará las operaciones basándose en los roles y permisos del usuario.
-from app.models import Usuario, Documento
+from models.usuario import Usuario
+from models.doumento import Documento
 
 def has_permission(user, action):
     """

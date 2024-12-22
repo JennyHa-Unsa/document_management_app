@@ -2,7 +2,8 @@ from flask import Blueprint, request, render_template, redirect, url_for, flash,
 from werkzeug.security import generate_password_hash, check_password_hash
 import pyotp
 from twilio.rest import Client
-from app.models import get_user_by_email, get_user_by_id, save_user_to_db  # Lógica de base de datos
+from app.services.user_functions import get_user_by_email, get_user_by_id, save_user_to_db
+
 
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 

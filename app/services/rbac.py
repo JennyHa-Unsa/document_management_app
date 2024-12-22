@@ -1,7 +1,10 @@
 from functools import wraps
 from flask import request, abort
 from flask_login import current_user
-from app.models import Rol, Permiso, UsuariosRoles, RolesPermisos
+from app.models.rol import Rol
+from app.models.permiso import Permiso
+from app.models.usuarios_roles import UsuariosRoles
+from app.models.roles_permisos import RolesPermisos
 
 def verificar_permiso(accion):
     """
