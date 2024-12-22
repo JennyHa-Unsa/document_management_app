@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-    <title>Inicio de sesión</title>
+    <meta charset="UTF-8">
+    <title>Verificación OTP</title>
 </head>
-<body>
-    <h1>Verificación de usuario</h1>
-    <form method="POST">
-    <label for="otp_code">Ingrese el código OTP:</label>
-    <input type="text" name="otp_code" id="otp_code" required>
-    <button type="submit">Verificar</button>
+
+<body> 
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+            <ul> 
+                {% for category, message in messages %} 
+                    <li class="{{ category }}">{{ message }}</li> 
+                {% endfor %} 
+            </ul> 
+        {% endif %} 
+    {% endwith %} 
+    
+    <form method="post"> 
+        <label for="otp_code">Ingrese el código OTP:</label>
+        <input type="text" name="otp_code" id="otp_code" required>
+        <button type="submit">Verificar</button>
     </form>
-</body>
+
 </html>

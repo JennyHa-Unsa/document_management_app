@@ -7,6 +7,7 @@ class Usuario(db.Model):
     telefono = db.Column(db.String(20))
     email = db.Column(db.String(100), unique=True)
     password_hash = db.Column(db.String(128))
+    otp_secret = db.Column(db.String(32))  # Añadir este campo para verificacion sms 
     activo = db.Column(db.Boolean, default=True)
     clave_publica = db.Column(db.String(256))
 

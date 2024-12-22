@@ -4,7 +4,6 @@ import pyotp
 from twilio.rest import Client
 from app.services.user_functions import get_user_by_email, get_user_by_id, save_user_to_db
 
-
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 # Configuración de Twilio
@@ -30,13 +29,12 @@ def register():
         try:
             save_user_to_db(name, phone, email, password)
             flash("Usuario registrado con éxito.", "success")
-            return redirect(url_for("auth.login"))
+            return redirect(url_for("auth.login"))  # Redirige a página login
         except ValueError as e:
             flash(str(e), "error")
             return redirect(url_for("auth.register"))
 
     return render_template("register.html")
-
 
 # Ruta de inicio de sesión (Paso 1)
 @bp.route("/login", methods=["GET", "POST"])
@@ -59,10 +57,9 @@ def login():
         # Guarda el estado temporal en la sesión
         session["temp_user_id"] = user.id_usuario
         flash("Se ha enviado un código OTP a tu número de teléfono.", "info")
-        return redirect(url_for("auth.verify_otp"))
+        return redirect(url_for("auth.verify_otp")) # redirecciona a verify.html
 
     return render_template("login.html")
-
 
 # Ruta para verificar OTP (Paso 2)
 @bp.route("/verify", methods=["GET", "POST"])
@@ -89,18 +86,16 @@ def verify_otp():
         session["user_id"] = user.id_usuario
         session.pop("temp_user_id", None)  # Limpia el estado temporal
         flash("Autenticación exitosa.", "success")
-        return redirect(url_for("document.documents"))
+        return redirect(url_for("document.list_documents"))
 
     return render_template("verify.html")
-
 
 # Ruta de cierre de sesión
 @bp.route("/logout")
 def logout():
     session.clear()
     flash("Has cerrado sesión.", "info")
-    return redirect(url_for("auth.login"))
-
+    return redirect(url_for("auth.login"))  # Redirige a login.html
 
 # Función para enviar OTP por SMS
 def send_otp_via_sms(phone, otp_code):

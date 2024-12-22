@@ -4,6 +4,15 @@
     <title>Registro</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+            <ul> 
+                {% for category, message in messages %} 
+                    <li class="{{ category }}">{{ message }}</li> 
+                {% endfor %} 
+            </ul> 
+        {% endif %} 
+    {% endwith %}
     <h1>Registro</h1>
     <form method="POST" action="{{ url_for('auth.register') }}">
         <label for="name">Nombre:</label>
