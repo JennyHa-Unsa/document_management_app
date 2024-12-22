@@ -9,6 +9,7 @@ class Usuario(db.Model):
     email = db.Column(db.String(100), unique=True)
     password_hash = db.Column(db.String(128))
     activo = db.Column(db.Boolean, default=True)
+    clave_publica = db.Column(db.String(256))
 
     roles = db.relationship('Rol', secondary='usuarios_roles')
 
